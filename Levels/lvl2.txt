@@ -1,0 +1,10 @@
+Nivel 2;
+11,7;
+BBBBBB#####
+BBBBBB#.BB#
+BBBBBB#.#B#
+#######.#B#
+#B@B$B$B$B#
+#B#B#B#B###
+#BBBBBBBB#B
+#########BB

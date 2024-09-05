@@ -1,0 +1,11 @@
+Nivel 5;
+10,8;
+##B####BBB   
+####BB####
+B#B$B$.BB#
+##B#BB.$B#
+#BBB##.###
+#BB$BB.B#B
+#B@B#BBB#B
+#BB######B
+####BBBBBB
