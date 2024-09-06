@@ -3,5 +3,5 @@ prueba;
 #######
 #BBBBB#
 #B@$BB#
-#B.#
+#B.BBB#
 #######

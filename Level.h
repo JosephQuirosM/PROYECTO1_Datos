@@ -1,4 +1,3 @@
-#pragma once
 
 #ifndef LEVEL_H
 #define LEVEL_H
@@ -23,29 +22,22 @@ public:
 
     ~Level();
 
+    void saveLevelToFile(const std::string& filename) const;
     void display();
 
-    void saveLevelToFile(const std::string& filename) const;
-
     std::string getTitle() const;
-
     int getColumns() const;
-
     int getRows() const;
-
     std::vector<std::string> getGrid() const;
 
     void setTitle(const std::string& newTitle);
-
     void setColumns(int newColumns);
-
     void setRows(int newRows);
-
     void setGrid(const std::vector<std::string>& newGrid);
 
-   
-
+  
 private:
+
     bool loadFromFile(const std::string& filename);
 
     
