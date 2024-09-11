@@ -3,17 +3,18 @@
 #include "Node.h"
 #include <iostream>
 
-class OrthogonalList
-{
+class OrthogonalList{
 private:
 	Node* head;
 	int SIZE;
 
 public:
 	OrthogonalList(int size);
-
+	OrthogonalList();
 	~OrthogonalList();
 
+	void setSize(int pSize);
+	int getSize();
 	void createList();
 	void print();
 

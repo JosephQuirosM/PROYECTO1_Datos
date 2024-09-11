@@ -9,25 +9,22 @@ private:
 	Node* left;
 	Node* up;
 	Node* down;
-	int value;
 	char character;
 
 public:
-	Node(int value);
 	Node(char caracter);
 	
 	Node* getNodeRight();
 	Node* getNodeLeft();
 	Node* getNodeUp();
 	Node* getNodeDown();
-	int getValue();
+	char getSymbol() const;
 
 	void setNodeRight(Node* right);
 	void setNodeLeft(Node* left);
 	void setNodeUp(Node* up);
 	void setNodeDown(Node* down);
-	void setValue(int value);
-
+	void setSymbol(char pSymbol);
 
 };
 

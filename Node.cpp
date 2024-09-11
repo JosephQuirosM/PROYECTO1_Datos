@@ -1,18 +1,7 @@
 #include "Node.h"
 
 
-Node::Node(int value)
-{
-    this->value = value;
-    right = nullptr;
-    left = nullptr;
-    up = nullptr;
-    down = nullptr;
-
-}
-
-Node::Node(char caracter)
-{
+Node::Node(char caracter){
     this->character = caracter;
     right = nullptr;
     left = nullptr;
@@ -41,10 +30,11 @@ Node* Node::getNodeDown()
     return down;
 }
 
-int Node::getValue()
-{
-    return value;
+char Node::getSymbol() const{
+    return this->character;
 }
+
+
 
 void Node::setNodeRight(Node* right)
 {
@@ -66,7 +56,8 @@ void Node::setNodeDown(Node* down)
     this->down = down;
 }
 
-void Node::setValue(int value)
-{
-    this->value = value;
+void Node::setSymbol(char pSymbol){
+    this->character = pSymbol;
 }
+
+

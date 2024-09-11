@@ -6,8 +6,20 @@ OrthogonalList::OrthogonalList( int size)
 	createList();
 }
 
+OrthogonalList::OrthogonalList(){
+	this->SIZE = 0;
+}
+
 OrthogonalList::~OrthogonalList()
 {
+}
+
+void OrthogonalList::setSize(int pSize){
+	this->SIZE = pSize;
+}
+
+int OrthogonalList::getSize(){
+	return this->SIZE;
 }
 
 void OrthogonalList::createList()
@@ -87,7 +99,7 @@ void OrthogonalList::print()
 		 }
 		for (int k = 0; k < SIZE; k++)
 		{
-			std::cout << aux->getValue() << ", ";
+			std::cout << aux->getSymbol() << " ";
 			aux = aux->getNodeRight();
 		}
 		std::cout << std::endl;

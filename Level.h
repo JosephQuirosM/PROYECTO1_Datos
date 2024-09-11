@@ -8,8 +8,7 @@
 #include <string>
 #include <sstream>
 
-class Level
-{
+class Level{
 private:
     std::string title;
     int columns, rows;
