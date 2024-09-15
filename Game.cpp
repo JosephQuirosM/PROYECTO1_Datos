@@ -14,12 +14,13 @@ void Game::createBoard(std::string pLevel) {
         return;
     }
     int size = level.getGrid().size();
-    std::cout << "Tamaño del nivel: " << size << std::endl;
     // Configurar la lista ortogonal con el tamaño del nivel
     this->board.setSize(size);
+    this->board.createList();
     this->board.insertData(level.getGrid(), size, size);
 
     std::cout << "Nivel cargado exitosamente." << std::endl;
+    setPlayer();
 }
 
 void Game::setPlayer() {
