@@ -3,12 +3,9 @@
 #include "Level.h"
 #include "OrthogonalList.h"
 #include <iostream>
-
+#include "Game.h"
 int main(){
-	int f[5] = { 0,1,2,3,4 };
-
-	OrthogonalList list(8);
-	list.print();
-
-	return 0;
+	Game obj;
+	obj.createBoard("level2.txt");
+	obj.printBoard();
 }

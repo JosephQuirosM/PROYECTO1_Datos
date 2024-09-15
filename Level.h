@@ -1,46 +1,38 @@
-
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <iostream>
 #include <sstream>
-
-class Level{
+class Level {
 private:
-    std::string title;
-    int columns, rows;
-    std::vector<std::string> grid;
+    std::string levelName;  // Nombre del nivel
+    int rows;
+    int cols;
+    std::vector<std::string> grid;  // Aquí se almacena el tablero como una matriz de caracteres
 
-public:   
-    Level(const std::string& filename);
+public:
+    Level() : rows(0), cols(0) {}
 
-    Level();
+    // Cargar el tablero desde un archivo
+    bool loadLevelFromFile(const std::string& filename);
 
-    ~Level();
+    // Devuelve el nombre del nivel
+    std::string getLevelName() const;
 
-    void saveLevelToFile(const std::string& filename) const;
-    void display();
-
-    std::string getTitle() const;
-    int getColumns() const;
-    int getRows() const;
+    // Devuelve el tablero
     std::vector<std::string> getGrid() const;
 
-    void setTitle(const std::string& newTitle);
-    void setColumns(int newColumns);
-    void setRows(int newRows);
-    void setGrid(const std::vector<std::string>& newGrid);
+    // Devuelve el número de filas
+    int getRows() const;
 
-  
-private:
+    // Devuelve el número de columnas
+    int getCols() const;
 
-    bool loadFromFile(const std::string& filename);
-
-    
+    // Imprimir el nivel en consola (opcional para verificar)
+    void printLevel() const;
 };
 
-#endif;
-
+#endif

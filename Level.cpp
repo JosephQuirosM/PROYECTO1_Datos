@@ -1,117 +1,61 @@
 #include "Level.h"
 
-
-
-Level::Level(const std::string& filename)
-{
-	loadFromFile(filename);
-}
-
-Level::Level()
-{
-
-}
-
-Level::~Level()
-{
-}
-
-bool Level::loadFromFile(const std::string& filename)
-{
+bool Level::loadLevelFromFile(const std::string& filename) {
     std::ifstream file(filename);
-    if (!file) {
-        std::cerr << "Error al abrir el archivo: " << filename << std::endl;
+
+    if (!file.is_open()) {
+        std::cerr << "No se pudo abrir el archivo: " << filename << std::endl;
         return false;
     }
 
-    // título
-    std::getline(file, title, ';');  // Lee hasta ;
-    file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignora el resto 
-
-    //dimensiones
-    std::string dimensions;
-    std::getline(file, dimensions, ';');
-    std::istringstream iss(dimensions);
-    char comma;
-    iss >> columns >> comma >> rows;  //x,y 
-
-    //mapa
-    grid.clear();
     std::string line;
+
+    // Leer la primera línea para obtener el nombre del nivel
+    if (std::getline(file, line)) {
+        levelName = line;
+    }
+
+    // Leer la segunda línea para obtener el tamaño del tablero
+    if (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string temp;
+
+        std::getline(ss, temp, ',');
+        rows = std::stoi(temp);
+
+        std::getline(ss, temp, ';');
+        cols = std::stoi(temp);
+    }
+
+    // Leer las siguientes líneas para el diseño del tablero
     while (std::getline(file, line)) {
-        grid.push_back(line);  // Agrega mapa
+        grid.push_back(line);
     }
 
     file.close();
     return true;
 }
 
-void Level::saveLevelToFile(const std::string& filename) const
-{
-
-    std::ofstream file(filename);
-    if (!file) {
-        std::cerr << "Error al abrir el archivo: " << filename << std::endl;
-        return;
-    }
-
-    // Guarda el txt
-    file << title << ";" << std::endl;
-    file << columns << "," << rows << ";" << std::endl;
-
-    for (const auto& line : grid) {
-        file << line << std::endl;  // Escribe mapa
-    }
-
-    file.close();
-    std::cout << "Nivel guardado exitosamente en " << filename << std::endl;
-
-}
-void Level::display()
-{
-    std::cout << title << std::endl;
-    std::cout << "Size. " << "colum= " << columns << " rows= " << rows << std::endl;
-    for (const auto& line : grid) {
-        std::cout << line << std::endl;
-    }
+std::string Level::getLevelName() const {
+    return levelName;
 }
 
-std::string Level::getTitle() const
-{
-    return title;
-}
-
-int Level::getColumns() const
-{
-    return columns;
-}
-
-int Level::getRows() const
-{
-    return rows;
-}
-
-std::vector<std::string> Level::getGrid() const
-{
+std::vector<std::string> Level::getGrid() const {
     return grid;
 }
 
-void Level::setTitle(const std::string& newTitle)
-{
-    title = newTitle;
+int Level::getRows() const {
+    return rows;
 }
 
-void Level::setColumns(int newColumns)
-{
-    columns = newColumns;
+int Level::getCols() const {
+    return cols;
 }
 
-void Level::setRows(int newRows)
-{
-    rows = newRows;
-}
-
-void Level::setGrid(const std::vector<std::string>& newGrid)
-{
-    grid = newGrid;
+void Level::printLevel() const {
+    std::cout << "Nombre del nivel: " << levelName << std::endl;
+    std::cout << "Tamaño del tablero: " << rows << "x" << cols << std::endl;
+    for (const auto& row : grid) {
+        std::cout << row << std::endl;
+    }
 }
