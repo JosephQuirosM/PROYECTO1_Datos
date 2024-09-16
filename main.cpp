@@ -6,6 +6,6 @@
 #include "Game.h"
 int main(){
 	Game obj;
-	obj.createBoard("level2.txt");
+	obj.createBoard("level1.txt");
 	obj.printBoard();
 }

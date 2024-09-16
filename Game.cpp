@@ -47,9 +47,16 @@ void Game::setPlayer() {
     }
 }
 
+void Game::newPosPlayer(){
+
+}
+
+void Game::swapCaracters(Node* pNode1, Node* pNode2){
+
+}
+
 void Game::printBoard() {
     Node* row = this->board.getHead();
-
     // Imprimir el tablero
     while (row != nullptr) {
         Node* currentNode = row;
@@ -59,5 +66,24 @@ void Game::printBoard() {
         }
         std::cout << std::endl;
         row = row->getNodeDown();
+    }
+}
+
+void Game::movePlayer(){
+    char keyPressed = _getch();
+    switch (keyPressed) {
+    case 'w':
+
+        break;
+    case 'd':
+
+        break;
+    case 's':
+
+        break;
+    case 'a':
+
+        break;
+
     }
 }
