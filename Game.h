@@ -15,9 +15,11 @@ public:
 	void createBoard(std::string level);
 	void printBoard();
 	void movePlayer();
+	void run();
 private:
+	bool isValidPos(Node* pNewPos);
 	void setPlayer();
 	void newPosPlayer();
-	void swapCaracters(Node* pNode1, Node* pNode2);
+	void swapCharacters(Node* pNode1, Node* pNode2);
 };
 #endif

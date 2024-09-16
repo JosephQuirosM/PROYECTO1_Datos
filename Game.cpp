@@ -51,13 +51,14 @@ void Game::newPosPlayer(){
 
 }
 
-void Game::swapCaracters(Node* pNode1, Node* pNode2){
-
+void Game::swapCharacters(Node* pNode1, Node* pNode2){
+    char aux = pNode1->getSymbol();
+    pNode1->setSymbol(pNode2->getSymbol());
+    pNode2->setSymbol(aux);
 }
 
 void Game::printBoard() {
     Node* row = this->board.getHead();
-    // Imprimir el tablero
     while (row != nullptr) {
         Node* currentNode = row;
         while (currentNode != nullptr) {
@@ -69,21 +70,56 @@ void Game::printBoard() {
     }
 }
 
+bool Game::isValidPos(Node* pNode2) {
+    if (pNode2->getSymbol() == '#') {
+        return false;
+    }
+    return true;
+}
+
 void Game::movePlayer(){
     char keyPressed = _getch();
+    Node* prevNode = nullptr;
     switch (keyPressed) {
-    case 'w':
-
+    case 'W':
+    case 'w': // Mover hacia arriba
+        if (isValidPos(this->player->getNodeUp())) {
+            prevNode = this->player;
+            this->player = player->getNodeUp();
+            swapCharacters(prevNode, this->player);
+        }
         break;
-    case 'd':
-
+    case 'D':
+    case 'd': // Mover hacia la derecha
+        if (isValidPos(this->player->getNodeRight())) {
+            prevNode = this->player;
+            this->player = player->getNodeRight();
+            swapCharacters(prevNode, this->player);
+        }
         break;
-    case 's':
-
+    case 'S':
+    case 's': // Mover hacia abajo
+        if (isValidPos(this->player->getNodeDown())) {
+            prevNode = this->player;
+            this->player = player->getNodeDown();
+            swapCharacters(prevNode, this->player);
+        }
         break;
-    case 'a':
-
+    case 'A':
+    case 'a': // Mover hacia la izquierda
+        if (isValidPos(this->player->getNodeLeft())) {
+            prevNode = this->player;
+            this->player = player->getNodeLeft();
+            swapCharacters(prevNode, this->player);
+        }
         break;
+    }
+}
 
+void Game::run(){
+    while (true) {
+        system("cls"); // Limpia la consola (Windows). En Linux sería "clear".
+        printBoard();
+        movePlayer();
     }
 }

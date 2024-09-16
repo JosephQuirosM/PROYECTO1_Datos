@@ -7,5 +7,5 @@
 int main(){
 	Game obj;
 	obj.createBoard("level1.txt");
-	obj.printBoard();
+	obj.run();
 }
