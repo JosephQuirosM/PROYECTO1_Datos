@@ -10,6 +10,7 @@ private:
 	std::string currentLevel;
 	Node* player;
 	std::string playerName;
+	bool wasBase;
 public:
 	Game();
 	void createBoard(std::string level);
@@ -17,9 +18,11 @@ public:
 	void movePlayer();
 	void run();
 private:
+	void moveBox(char pPos, Node* pNode);
+	bool isBox(Node* pNewNode);
 	bool isValidPos(Node* pNewPos);
 	void setPlayer();
 	void newPosPlayer();
-	void swapCharacters(Node* pNode1, Node* pNode2);
+	void swapCharacters(Node* pPrevNode, Node* pNewPosPlayer);
 };
 #endif
