@@ -11,6 +11,9 @@ private:
 	Node* down;
 	char character;
 
+	int row;   
+	int column; 
+
 public:
 	Node(char caracter);
 	
@@ -25,6 +28,11 @@ public:
 	void setNodeUp(Node* up);
 	void setNodeDown(Node* down);
 	void setSymbol(char pSymbol);
+
+	int getRow() const;
+	void setRow(int r);
+	int getColumn() const;
+	void setColumn(int c);
 
 };
 

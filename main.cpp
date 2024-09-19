@@ -4,8 +4,11 @@
 #include "OrthogonalList.h"
 #include <iostream>
 #include "Game.h"
+
 int main(){
+	
+	setlocale(LC_CTYPE, "Spanish");
 	Game obj;
-	obj.createBoard("level1.txt");
 	obj.run();
+
 }

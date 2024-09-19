@@ -2,11 +2,13 @@
 
 OrthogonalList::OrthogonalList( int size)
 {
+    head = nullptr;
 	SIZE = size;
 	createList();
 }
 
 OrthogonalList::OrthogonalList(){
+    head = nullptr;
 	this->SIZE = 0;
 	
 }
@@ -22,6 +24,7 @@ void OrthogonalList::setSize(int pSize){
 int OrthogonalList::getSize() const{
 	return this->SIZE;
 }
+
 
 void OrthogonalList::createList()
 {

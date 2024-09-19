@@ -10,9 +10,10 @@ bool Level::loadLevelFromFile(const std::string& filename) {
 
     std::string line;
 
-    // Leer la primera línea para obtener el nombre del nivel
     if (std::getline(file, line)) {
-        levelName = line;
+        std::stringstream ss(line);
+        std::getline(ss, levelName, ';');  // Lee hasta el punto y coma
+       
     }
 
     // Leer la segunda línea para obtener el tamaño del tablero
@@ -26,6 +27,7 @@ bool Level::loadLevelFromFile(const std::string& filename) {
         std::getline(ss, temp, ';');
         cols = std::stoi(temp);
     }
+
 
     // Leer las siguientes líneas para el diseño del tablero
     while (std::getline(file, line)) {

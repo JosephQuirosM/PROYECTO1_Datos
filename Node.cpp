@@ -61,3 +61,16 @@ void Node::setSymbol(char pSymbol){
 }
 
 
+int Node::getRow() const { 
+    return row;
+}
+void Node::setRow(int r) {
+    row = r;
+}
+
+int Node::getColumn() const {
+    return column;
+}
+void Node::setColumn(int c) {
+    column = c; 
+}

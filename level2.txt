@@ -1,15 +1,10 @@
 nivel 2;
-13,13
-#############
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#BBBBBBBBBBB#
-#############
+8,8;
+########
+#@   ###
+#   $#.#
+# $  # #
+#    # #
+#      #
+# .    #
+########

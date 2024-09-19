@@ -145,10 +145,10 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="OrthogonalList.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="level1.txt" />
-    <Text Include="level2.txt" />
+    <ResourceCompile Include="PROYECTO1_Datos.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
