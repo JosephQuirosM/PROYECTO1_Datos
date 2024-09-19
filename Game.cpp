@@ -1,8 +1,16 @@
 #include "Game.h"
 
 Game::Game() {
+<<<<<<< HEAD
     levels = { "level1.txt", "level2.txt", "level3.txt", "level4.txt", "level5.txt" };
     currentLevelIndex = 0;
+=======
+    this->currentLevel = "indef";
+    this->player = nullptr;
+    this->playerName = "indef";
+    this->wasBase = false;
+}
+>>>>>>> 7d4bb488a70e90fd92840eabed5cbf6f3280d734
 
     this->player = nullptr;
     this->wasBase = false;
@@ -52,6 +60,23 @@ void Game::swapCharacters(Node* pPrevNode, Node* pNewPosPlayer) {
     }
 }
 
+<<<<<<< HEAD
+=======
+void Game::newPosPlayer(){
+
+}
+
+void Game::swapCharacters(Node* pPrevNode, Node* pNewPosPlayer){
+    if (pNewPosPlayer->getSymbol() == '.') {
+        
+    }
+    
+    char aux = pPrevNode->getSymbol();
+    pPrevNode->setSymbol(pNewPosPlayer->getSymbol());
+    pNewPosPlayer->setSymbol(aux);
+}
+
+>>>>>>> 7d4bb488a70e90fd92840eabed5cbf6f3280d734
 void Game::printBoard() {
     std::cout << currentLevel.getLevelName() << '\n' << std::endl;
 
@@ -67,6 +92,7 @@ void Game::printBoard() {
     }
 }
 
+<<<<<<< HEAD
 void Game::moveBox(char direction, Node* boxNode) {
     Node* nextPosBox = nullptr;
 
@@ -276,7 +302,97 @@ void Game::recordMove(char direction) {
         replayMoves.push_back("Movimiento: Derecha");
         break;
     default:
+=======
+void Game::moveBox(char pPos, Node* pNode){
+    Node* nextPosBox = nullptr;
+    switch (pPos) {
+    case 'W':
+    case 'w':
+        nextPosBox = pNode->getNodeUp();
         break;
+    case 'D':
+    case 'd':
+        nextPosBox = pNode->getNodeRight();
+        break;
+    case 'S':
+    case 's':
+        nextPosBox = pNode->getNodeDown();
+        break;
+    case 'A':
+    case 'a':
+        nextPosBox = pNode->getNodeLeft();
+        break;
+    default:
+        return;
+    }
+    if (isValidPos(nextPosBox)) {
+        swapCharacters(nextPosBox, pNode);
+    }
+}
+
+bool Game::isBox(Node* pNewNode){
+    if (pNewNode->getSymbol() == '$') {
+        return true;
+    }
+    return false;
+}
+
+bool Game::isValidPos(Node* pNode2) {
+    if (pNode2->getSymbol() == '#') {
+        return false;
+    }
+    return true;
+}
+
+void Game::movePlayer(){
+    char keyPressed = _getch();
+    Node* actualNode = this->player; 
+    Node* nextNode = nullptr;
+
+    switch (keyPressed) {
+    case 'W':
+    case 'w':
+        nextNode = this->player->getNodeUp();
+        break;
+    case 'D':
+    case 'd':
+        nextNode = this->player->getNodeRight();
+        break;
+    case 'S':
+    case 's':
+        nextNode = this->player->getNodeDown();
+        break;
+    case 'A':
+    case 'a':
+        nextNode = this->player->getNodeLeft();
+>>>>>>> 7d4bb488a70e90fd92840eabed5cbf6f3280d734
+        break;
+    default:
+        return;
+    }
+    if (isBox(nextNode)) {
+        moveBox(keyPressed, nextNode);
+    }
+    // Validar si el movimiento es posible
+    if (nextNode != nullptr && isValidPos(nextNode)) {
+        // Restaurar la posición anterior
+        if (wasBase) {
+            actualNode->setSymbol('.');  // Restauramos la base anterior si estaba en una
+        }
+        else {
+            actualNode->setSymbol(' ');  // Si no estaba en una base, dejamos un espacio
+        }
+        // Verificar si la nueva posición es una base ('.')
+        if (nextNode->getSymbol() == '.') {
+            this->wasBase = true;  // La nueva posición es una base
+        }
+        else {
+            this->wasBase = false; // No es una base
+        }
+
+        // Mover al jugador a la nueva posición
+        nextNode->setSymbol('@');  // Colocamos al jugador
+        this->player = nextNode;   // Actualizamos la posición del jugador
     }
 }
 
