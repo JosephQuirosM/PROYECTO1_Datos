@@ -1,7 +1,10 @@
+
 #ifndef GAME_H
 #define GAME_H
 #include "OrthogonalList.h"
+#include "Menu.h"
 #include "Level.h"
+#include <vector>
 #include <string>
 #include <conio.h>
 class Game {
@@ -16,6 +19,7 @@ private:
 
 	std::vector<std::string> levels;
 	int currentLevelIndex = 0;
+
 public:
 	Game();
 	void createBoard(std::string level);
@@ -37,8 +41,8 @@ private:
 	void movePlayerToDirection(char direction);
 	void handleInvalidMove();
 	void resetGame();
-	std::vector<std::string> getReplay() const;  // Devuelve pasos de la repeticion
 	void recordMove(char direction);
 	void showReplay();
+	void setColor(int textColor, int bgColor);
 };
 #endif

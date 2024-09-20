@@ -1,14 +1,9 @@
-#include "SFML/Graphics.hpp"
-#include "SFML/System.hpp"
-#include "Level.h"
-#include "OrthogonalList.h"
-#include <iostream>
-#include "Game.h"
+#include <locale>
+#include "Menu.h"
 
-int main(){
-	
+int main(){	
 	setlocale(LC_CTYPE, "Spanish");
-	Game obj;
-	obj.run();
-
+	Menu menu;
+	menu.runMenu(); 
+	return 0;
 }

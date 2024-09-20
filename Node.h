@@ -16,6 +16,7 @@ private:
 
 public:
 	Node(char caracter);
+	Node(char caracter, int r, int c);
 	Node* getNodeRight();
 	Node* getNodeLeft();
 	Node* getNodeUp();

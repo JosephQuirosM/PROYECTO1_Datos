@@ -25,64 +25,108 @@ int OrthogonalList::getSize() const{
 	return this->SIZE;
 }
 
+//
+//void OrthogonalList::createList()
+//{
+//	Node* prev = nullptr;
+//	Node* rowStart = nullptr;
+//	Node* currentNode = nullptr;
+//
+//	// Crear la primera fila (horizontal)
+//	for (int i = 0; i < SIZE; i++)
+//	{
+//		Node* newNode = new Node(0);
+//
+//		if (i == 0) {
+//			head = newNode;
+//			rowStart = newNode;
+//		}
+//		else {
+//			prev->setNodeRight(newNode);
+//			newNode->setNodeLeft(prev);
+//		}
+//
+//		prev = newNode;
+//	}
+//
+//	// Crear las filas siguientes
+//	for (int i = 1; i < SIZE; i++)
+//	{
+//		prev = rowStart;
+//		Node* newRowStart = new Node(0);
+//		prev->setNodeDown(newRowStart);
+//		newRowStart->setNodeUp(prev);
+//		currentNode = newRowStart;
+//
+//		for (int j = 1; j < SIZE; j++)
+//		{
+//			Node* newNode = new Node(0);
+//			currentNode->setNodeRight(newNode);
+//			newNode->setNodeLeft(currentNode);
+//			currentNode = newNode;
+//		}
+//
+//		// Conectar la nueva fila a la fila anterior
+//		Node* temp = newRowStart;
+//		Node* prevRowNode = rowStart;
+//		for (int k = 0; k < SIZE; k++)
+//		{
+//			temp->setNodeUp(prevRowNode);
+//			prevRowNode->setNodeDown(temp);
+//
+//			temp = temp->getNodeRight();
+//			prevRowNode = prevRowNode->getNodeRight();
+//		}
+//
+//		// Actualizar la referencia de la fila actual
+//		rowStart = rowStart->getNodeDown();
+//	}
+//
+//}
+void OrthogonalList::createList() {
+    Node* prev = nullptr;
+    Node* rowStart = nullptr;
 
-void OrthogonalList::createList()
-{
-	Node* prev = nullptr;
-	Node* rowStart = nullptr;
-	Node* currentNode = nullptr;
+    for (int i = 0; i < SIZE; i++) {
+        Node* newNode = new Node(0, i, 0); // x = i, y = 0 para la primera fila
+        if (i == 0) {
+            head = newNode;
+            rowStart = newNode;
+        }
+        else {
+            prev->setNodeRight(newNode);
+            newNode->setNodeLeft(prev);
+        }
+        prev = newNode;
+    }
 
-	// Crear la primera fila (horizontal)
-	for (int i = 0; i < SIZE; i++)
-	{
-		Node* newNode = new Node(0);
+    for (int i = 1; i < SIZE; i++) {
+        prev = rowStart;
+        Node* newRowStart = new Node(0, 0, i); // x = 0, y = i para la nueva fila
+        prev->setNodeDown(newRowStart);
+        newRowStart->setNodeUp(prev);
+        Node* currentNode = newRowStart;
 
-		if (i == 0) {
-			head = newNode;
-			rowStart = newNode;
-		}
-		else {
-			prev->setNodeRight(newNode);
-			newNode->setNodeLeft(prev);
-		}
+        for (int j = 1; j < SIZE; j++) {
+            Node* newNode = new Node(0, j, i); // x = j, y = i
+            currentNode->setNodeRight(newNode);
+            newNode->setNodeLeft(currentNode);
+            currentNode = newNode;
+        }
 
-		prev = newNode;
-	}
+        Node* temp = newRowStart;
+        Node* prevRowNode = rowStart;
+        for (int k = 0; k < SIZE; k++) {
+            temp->setNodeUp(prevRowNode);
+            prevRowNode->setNodeDown(temp);
+            temp = temp->getNodeRight();
+            prevRowNode = prevRowNode->getNodeRight();
+        }
 
-	// Crear las filas siguientes
-	for (int i = 1; i < SIZE; i++)
-	{
-		prev = rowStart;
-		Node* newRowStart = new Node(0);
-		prev->setNodeDown(newRowStart);
-		newRowStart->setNodeUp(prev);
-		currentNode = newRowStart;
-
-		for (int j = 1; j < SIZE; j++)
-		{
-			Node* newNode = new Node(0);
-			currentNode->setNodeRight(newNode);
-			newNode->setNodeLeft(currentNode);
-			currentNode = newNode;
-		}
-
-		// Conectar la nueva fila a la fila anterior
-		Node* temp = newRowStart;
-		Node* prevRowNode = rowStart;
-		for (int k = 0; k < SIZE; k++)
-		{
-			temp->setNodeUp(prevRowNode);
-			prevRowNode->setNodeDown(temp);
-
-			temp = temp->getNodeRight();
-			prevRowNode = prevRowNode->getNodeRight();
-		}
-
-		// Actualizar la referencia de la fila actual
-		rowStart = rowStart->getNodeDown();
-	}
-
+        rowStart = rowStart->getNodeDown();
+    }
 }
+
 
 void OrthogonalList::insertData(const std::vector<std::string>& pGrid,int pRow, int pColumn ){
 	if (pRow > SIZE || pColumn > SIZE || pGrid.size() != SIZE || pGrid[0].length() != SIZE) {

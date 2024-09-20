@@ -10,6 +10,16 @@ Node::Node(char caracter){
 
 }
 
+Node::Node(char caracter, int r, int c) {
+    this->character = caracter;
+    right = nullptr;
+    left = nullptr;
+    up = nullptr;
+    down = nullptr;
+    row = r;    // Inicializa la fila
+    column = c; // Inicializa la columna
+}
+
 Node* Node::getNodeRight()
 {
     return right;
