@@ -5,6 +5,43 @@
 
 Menu::~Menu() {}
 
+void Menu::runMenu() {
+    setConsoleSize(50, 20); // Cambiar tamaño de consola
+
+    int choice;
+    
+
+    do {
+        Game game;
+        displayMenu();
+        std::cin >> choice;
+        switch (choice) {
+        case 1:
+            setConsoleColors(3, 0);
+            animate();
+            game.run();
+            break;
+
+        case 2:
+            game = loadGames();
+            setConsoleColors(3, 0);
+            animate();
+            game.reloadGame();
+            break;
+
+        case 3:
+            howToPlay();
+            break;
+        case 4:
+            std::cout << "Hasta luego\n";
+            exit(0);
+            break;
+        default:
+            std::cout << "Opción no válida. Intente nuevamente.\n";
+        }
+    } while (choice != 4);
+}
+
 void Menu::displayMenu() {
     setConsoleColors(4, 0);
     system("cls");
@@ -39,13 +76,14 @@ void Menu::howToPlay() {
     std::cin.ignore();
     std::cin.get();
 }
-void Menu::loadGame()
+
+Game Menu::loadGames()
 {
-    system("cls");
-    std::cout << "Presione cualquier tecla para volver al menú principal.\n";
-    std::cin.ignore();
-    std::cin.get();
+    Level lastGame;
+    std::string movements = lastGame.loadGame();
+    return Game(lastGame.getLevel(), movements);
 }
+
 void Menu::printCenteredWithVerticalLines(const std::string& text, int totalWidth) {
     setConsoleColors(4, 0);
     int textWidth = totalWidth - 4; // Espacio para las líneas verticales
@@ -56,36 +94,6 @@ void Menu::printCenteredWithVerticalLines(const std::string& text, int totalWidt
     std::cout << std::string(padding, ' ') << text;
     std::cout << std::string(textWidth - padding - text.length(), ' ') << "*"; // Línea vertical derecha
     std::cout << std::endl;
-}
-
-void Menu::runMenu() {
-    setConsoleSize(50, 20); // Cambiar tamaño de consola
-
-    int choice;
-    Game game;
-    do {
-        displayMenu();
-        std::cin >> choice;
-        switch (choice) {
-        case 1:
-            setConsoleColors(3, 0);
-            animate();
-            game.run(); 
-            break;
-        case 2:
-            loadGame();
-            break;
-        case 3:
-            howToPlay();
-            break;
-        case 4:
-            std::cout << "Hasta luego\n";
-            exit(-1);
-            break;
-        default:
-            std::cout << "Opción no válida. Intente nuevamente.\n";
-        }
-    } while (choice != 4);
 }
 
 void Menu::setConsoleSize(int width, int height) {

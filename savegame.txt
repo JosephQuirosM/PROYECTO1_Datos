@@ -1,3 +1,0 @@
-Estado del juego en el nivel 1
-Jugador en posición X,Y
-Tablero del nivel 1

@@ -54,10 +54,66 @@ int Level::getCols() const {
     return cols;
 }
 
+void Level::setLevel(int level)
+{
+    this->level = level;
+}
+
+int Level::getLevel()
+{
+    return level;
+}
+
 void Level::printLevel() const {
     std::cout << "Nombre del nivel: " << levelName << std::endl;
     std::cout << "Tamaño del tablero: " << rows << "x" << cols << std::endl;
     for (const auto& row : grid) {
         std::cout << row << std::endl;
     }
+}
+
+void Level::saveGame(std::vector<char>& moves, int currentLevel)
+{
+    std::ofstream save("saveFile.txt");
+
+    if (!save.is_open()) {
+        std::cout << "Error al guardar partida";
+        return;
+    }
+
+    save << currentLevel <<std::endl;
+
+    std::string movement = "";
+
+    if (!moves.empty()) {
+        for (const auto& move : moves) {
+            movement += move;
+            movement += '-';
+        }
+        movement.erase(movement.length() - 1, 1);
+    }
+    
+    movement += ';';
+    save << movement <<std::endl;
+
+    save.close();
+}
+
+std::string Level::loadGame()
+{
+    std::ifstream game("saveFile.txt");
+    std::string line;
+
+    if (!game.is_open()) {
+        std::cout << "error al cargar una partida\n";
+        return "ERROR";
+    }
+
+    std::getline(game, line);
+    setLevel(std::stoi(line));
+
+
+    std::getline(game, line);
+
+    return line;
 }

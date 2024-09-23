@@ -7,7 +7,9 @@ Node::Node(char caracter){
     left = nullptr;
     up = nullptr;
     down = nullptr;
-
+    row = 0;
+    column = 0;
+    base = false;
 }
 
 Node::Node(char caracter, int r, int c) {
@@ -18,6 +20,7 @@ Node::Node(char caracter, int r, int c) {
     down = nullptr;
     row = r;    // Inicializa la fila
     column = c; // Inicializa la columna
+    base = false;
 }
 
 Node* Node::getNodeRight()
@@ -83,4 +86,14 @@ int Node::getColumn() const {
 }
 void Node::setColumn(int c) {
     column = c; 
+}
+
+void Node::setBase(bool state)
+{
+    base = state;
+}
+
+bool Node::isBase()
+{
+    return base;
 }

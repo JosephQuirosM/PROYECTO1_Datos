@@ -10,7 +10,7 @@ private:
 	Node* up;
 	Node* down;
 	char character;
-
+	bool base;
 	int row;   
 	int column; 
 
@@ -33,7 +33,8 @@ public:
 	void setRow(int r);
 	int getColumn() const;
 	void setColumn(int c);
-
+	void setBase(bool state);
+	bool isBase();
 };
 
 #endif;

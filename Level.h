@@ -11,10 +11,11 @@ private:
     std::string levelName;  // Nombre del nivel
     int rows;
     int cols;
+    int level;
     std::vector<std::string> grid;  // Aquí se almacena el tablero como una matriz de caracteres
 
 public:
-    Level() : rows(0), cols(0) {}
+    Level() : rows(0), cols(0), level(0) {}
 
     // Cargar el tablero desde un archivo
     bool loadLevelFromFile(const std::string& filename);
@@ -31,8 +32,16 @@ public:
     // Devuelve el número de columnas
     int getCols() const;
 
+    void setLevel(int level);
+
+    int getLevel();
+
     // Imprimir el nivel en consola (opcional para verificar)
     void printLevel() const;
+
+    void saveGame(std::vector<char>& moves, int currentLevel);
+
+    std::string loadGame();
 };
 
 #endif

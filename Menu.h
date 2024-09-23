@@ -10,9 +10,6 @@ public:
     Menu() = default;
     ~Menu();
 
-    void displayMenu();
-    void howToPlay();
-    void loadGame();
     void runMenu();
 
 private:
@@ -20,6 +17,9 @@ private:
     void setConsoleColors(int textColor, int bgColor);
     void animate();
     void printCenteredWithVerticalLines(const std::string& text, int totalWidth);
+    void displayMenu();
+    void howToPlay();
+    Game loadGames();
 
 };
-#endif//
+#endif

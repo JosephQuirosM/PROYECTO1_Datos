@@ -1,3 +1,6 @@
-﻿  Menu.cpp
-C:\Users\kathe\source\repos\Proyecto1_EstructurasDatos\PROYECTO1_Datos\Menu.cpp(52,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-  PROYECTO1_Datos.vcxproj -> C:\Users\kathe\source\repos\Proyecto1_EstructurasDatos\PROYECTO1_Datos\x64\Debug\PROYECTO1_Datos.exe
+﻿  Game.cpp
+  Menu.cpp
+G:\ProyectosC++\PROYECTO1_Datos\Menu.cpp(90,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  main.cpp
+  Generando código...
+  PROYECTO1_Datos.vcxproj -> G:\ProyectosC++\PROYECTO1_Datos\x64\Debug\PROYECTO1_Datos.exe

@@ -16,6 +16,7 @@ public:
 	void setSize(int pSize);
 	int getSize() const;
 	void createList();
+	void clearList();
 	void insertData(const std::vector<std::string>& grid, int pRow, int pColumn);
 	Node* getHead();
 	void print();

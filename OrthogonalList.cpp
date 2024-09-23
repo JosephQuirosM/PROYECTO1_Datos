@@ -15,6 +15,7 @@ OrthogonalList::OrthogonalList(){
 
 OrthogonalList::~OrthogonalList()
 {
+    clearList();
 }
 
 void OrthogonalList::setSize(int pSize){
@@ -25,64 +26,6 @@ int OrthogonalList::getSize() const{
 	return this->SIZE;
 }
 
-//
-//void OrthogonalList::createList()
-//{
-//	Node* prev = nullptr;
-//	Node* rowStart = nullptr;
-//	Node* currentNode = nullptr;
-//
-//	// Crear la primera fila (horizontal)
-//	for (int i = 0; i < SIZE; i++)
-//	{
-//		Node* newNode = new Node(0);
-//
-//		if (i == 0) {
-//			head = newNode;
-//			rowStart = newNode;
-//		}
-//		else {
-//			prev->setNodeRight(newNode);
-//			newNode->setNodeLeft(prev);
-//		}
-//
-//		prev = newNode;
-//	}
-//
-//	// Crear las filas siguientes
-//	for (int i = 1; i < SIZE; i++)
-//	{
-//		prev = rowStart;
-//		Node* newRowStart = new Node(0);
-//		prev->setNodeDown(newRowStart);
-//		newRowStart->setNodeUp(prev);
-//		currentNode = newRowStart;
-//
-//		for (int j = 1; j < SIZE; j++)
-//		{
-//			Node* newNode = new Node(0);
-//			currentNode->setNodeRight(newNode);
-//			newNode->setNodeLeft(currentNode);
-//			currentNode = newNode;
-//		}
-//
-//		// Conectar la nueva fila a la fila anterior
-//		Node* temp = newRowStart;
-//		Node* prevRowNode = rowStart;
-//		for (int k = 0; k < SIZE; k++)
-//		{
-//			temp->setNodeUp(prevRowNode);
-//			prevRowNode->setNodeDown(temp);
-//
-//			temp = temp->getNodeRight();
-//			prevRowNode = prevRowNode->getNodeRight();
-//		}
-//
-//		// Actualizar la referencia de la fila actual
-//		rowStart = rowStart->getNodeDown();
-//	}
-//
-//}
 void OrthogonalList::createList() {
     Node* prev = nullptr;
     Node* rowStart = nullptr;
@@ -127,6 +70,26 @@ void OrthogonalList::createList() {
     }
 }
 
+void OrthogonalList::clearList()
+{
+    Node* aux = nullptr;
+    Node* del = nullptr;
+
+    while (head != nullptr) {
+        aux = head->getNodeRight();
+
+        while (aux != nullptr) {
+            del = aux;
+            aux = aux->getNodeRight();
+            delete del;
+        }
+
+        del = head;
+        head = head->getNodeDown();
+        delete del;
+    }
+}
+
 
 void OrthogonalList::insertData(const std::vector<std::string>& pGrid,int pRow, int pColumn ){
 	if (pRow > SIZE || pColumn > SIZE || pGrid.size() != SIZE || pGrid[0].length() != SIZE) {
@@ -136,11 +99,17 @@ void OrthogonalList::insertData(const std::vector<std::string>& pGrid,int pRow, 
 
 	Node* currentRow = head;
 	Node* currentNode = nullptr;
+    char character;
 
 	for (int i = 0; i < SIZE; ++i) {
 		currentNode = currentRow;
 		for (int j = 0; j < SIZE; ++j) {
-			currentNode->setSymbol(pGrid[i][j]); // Asignar el símbolo del nivel (e.g., '@', '$', etc.)
+            character = pGrid[i][j];
+
+            if (character == '.') {
+                currentNode->setBase(true);
+            }
+			currentNode->setSymbol(character); // Asignar el símbolo del nivel (e.g., '@', '$', etc.)
 			currentNode = currentNode->getNodeRight(); // Mover a la derecha en la fila actual
 		}
 		currentRow = currentRow->getNodeDown(); // Mover a la fila siguiente
